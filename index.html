@@ -2,248 +2,199 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Relationship Upgrade 💖</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<title>Our Story 🌸</title>
 
 <style>
-body {
+body{
   margin:0;
-  font-family:'Poppins',sans-serif;
-  background: linear-gradient(-45deg,#ffb6d9,#ff4fa3,#ffd6ec,#ffe3f4);
-  background-size:400% 400%;
-  animation: gradient 10s ease infinite;
+  font-family: 'Poppins', sans-serif;
+  background:black;
+  color:white;
+  text-align:center;
+  overflow:hidden;
+}
+
+.screen{
+  height:100vh;
   display:flex;
+  flex-direction:column;
   justify-content:center;
   align-items:center;
-  height:100vh;
-  overflow:hidden;
-  text-align:center;
-  color:white;
 }
 
-@keyframes gradient{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-
-#container{
-  width:90%;
-  max-width:500px;
-}
-
-button{
-  background:white;
-  color:#ff4fa3;
-  border:none;
-  padding:12px 25px;
-  border-radius:25px;
-  margin:10px;
-  font-weight:600;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-button:hover{
-  transform:scale(1.1);
-  box-shadow:0 0 15px rgba(255,255,255,0.8);
+h1{
+  color:#ff2e88;
+  text-shadow:0 0 20px #ff2e88;
 }
 
 input{
-  padding:10px;
-  border-radius:20px;
+  padding:12px;
+  width:250px;
+  border-radius:25px;
   border:none;
+  margin-top:15px;
   text-align:center;
 }
 
-.fade{
-  animation:fade 0.8s ease;
+button{
+  margin-top:15px;
+  padding:10px 25px;
+  border:none;
+  border-radius:25px;
+  background:#ff2e88;
+  color:white;
+  cursor:pointer;
 }
 
-@keyframes fade{
-  from{opacity:0}
-  to{opacity:1}
+button:hover{
+  box-shadow:0 0 15px #ff2e88;
 }
 
-.confetti{
+.hidden{
+  display:none;
+}
+
+/* Sakura petals */
+.petal{
   position:absolute;
-  width:10px;
-  height:10px;
-  background:white;
-  top:-10px;
-  animation:fall 3s linear infinite;
+  color:pink;
+  font-size:20px;
+  animation:fall 8s linear infinite;
 }
 
 @keyframes fall{
-  to{transform:translateY(100vh) rotate(360deg);}
+  0%{transform:translateY(-10vh) rotate(0deg);}
+  100%{transform:translateY(100vh) rotate(360deg);}
 }
+
+/* Gallery */
+.gallery{
+  position:relative;
+  width:100%;
+  height:100vh;
+  background:radial-gradient(circle at top,#ff2e88,#000);
+}
+
+.photo{
+  position:absolute;
+  width:120px;
+  border-radius:15px;
+  box-shadow:0 0 15px #ff2e88;
+  transition:transform 0.3s;
+}
+
+.photo:hover{
+  transform:scale(1.2);
+}
+
+.finalText{
+  position:absolute;
+  bottom:40px;
+  width:100%;
+  font-size:18px;
+  color:#ff2e88;
+  text-shadow:0 0 10px #ff2e88;
+}
+
 </style>
 </head>
 
 <body>
 
-<div id="container" class="fade"></div>
+<div id="game" class="screen">
+  <h1>🔐 Unlock Our Love Arc</h1>
+  <p id="question">When did we officially become us?</p>
+  <input id="answer" placeholder="Type here">
+  <button onclick="check()">Unlock</button>
+  <div id="error"></div>
+</div>
 
-<audio id="bgMusic" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
+<div id="memory" class="gallery hidden">
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/02/10/audio_25e4d0f3c5.mp3" type="audio/mp3">
+  </audio>
+  <div class="finalText" id="endingText"></div>
+</div>
 
 <script>
-const girl = "Swati Saran";
-const boy = "Deep Gangadharani";
-const container = document.getElementById("container");
-const music = document.getElementById("bgMusic");
 
-let tapCount = 0;
+let round = 1;
 
-function show(html){
-  container.classList.remove("fade");
-  setTimeout(()=>{
-    container.innerHTML = html;
-    container.classList.add("fade");
-  },300);
-}
+function check(){
+  let val = document.getElementById("answer").value.trim().toLowerCase();
+  let error = document.getElementById("error");
 
-function startMusic(){
-  music.volume = 0.2;
-  music.play();
-}
+  if(round===1){
+    if(val==="13/03/2025"){
+      round=2;
+      document.getElementById("question").innerText="Which anime connects us forever?";
+      document.getElementById("answer").value="";
+      error.innerText="";
+    } else error.innerText="Think again 😏";
+  }
 
-function scene1(){
-  show(`
-    <h2>⚠ Relationship Notification ⚠</h2>
-    <p>${girl} triggered Premium Mode 💖</p>
-    <button onclick="startMusic();scene2()">Open System 💻</button>
-  `);
-}
+  else if(round===2){
+    if(val==="one piece"){
+      round=3;
+      document.getElementById("question").innerText="Where was our first kiss? 🌙";
+      document.getElementById("answer").value="";
+      error.innerText="";
+    } else error.innerText="Wrong anime captain 🏴‍☠️";
+  }
 
-function scene2(){
-  show(`
-    <h2>Current Status?</h2>
-    <button onclick="scene3()">Cute but dangerous 😏</button>
-    <button onclick="scene3()">Emotionally attached 😌</button>
-    <button onclick="scene3()">Main character couple 💅</button>
-  `);
-}
-
-function scene3(){
-  tapCount=0;
-  show(`
-    <h2>Tap if you love ${boy} too much 😌</h2>
-    <h1 id="counter">0</h1>
-    <button onclick="tap()">TAP 💖</button>
-  `);
-  setTimeout(()=>{
-    scene4();
-  },3000);
-}
-
-function tap(){
-  tapCount++;
-  document.getElementById("counter").innerText=tapCount;
-}
-
-function scene4(){
-  show(`
-    <h2>If ${boy} disappears for 1 week...</h2>
-    <button onclick="scene5()">Cry</button>
-    <button onclick="scene5()">Panic</button>
-    <button onclick="scene5()">Spam call</button>
-    <button onclick="scene5()">All of the above</button>
-  `);
-}
-
-function scene5(){
-  show(`
-    <h2>Enter Secret Code 🔐</h2>
-    <p>Hint: What are we becoming?</p>
-    <input id="code" placeholder="Type here"/>
-    <br><br>
-    <button onclick="checkCode()">Unlock</button>
-  `);
-}
-
-function checkCode(){
-  const val = document.getElementById("code").value.toLowerCase();
-  if(val==="us"){
-    scene6();
-  }else{
-    alert("Try again genius 😌");
+  else if(round===3){
+    if(val==="terrace"){
+      unlockGallery();
+    } else error.innerText="Close… but not quite 💭";
   }
 }
 
-function scene6(){
-  show(`
-    <h2>This wasn’t random...</h2>
-    <p>I don’t want timepass.</p>
-    <p>I don’t want temporary.</p>
-    <p>I want intention.</p>
-    <button onclick="scene7()">Define intention</button>
-  `);
-}
+function unlockGallery(){
+  document.getElementById("game").classList.add("hidden");
+  let memory = document.getElementById("memory");
+  memory.classList.remove("hidden");
 
-function scene7(){
-  show(`
-    <h2>Terms & Conditions 💌</h2>
-    <p>✔ Must tolerate mood swings</p>
-    <p>✔ Unlimited hugs allowed</p>
-    <p>✔ Choose each other daily</p>
-    <button onclick="scene8()">I Agree 💖</button>
-  `);
-}
+  document.getElementById("bgMusic").volume=0.4;
+  document.getElementById("bgMusic").play();
 
-function scene8(){
-  show(`
-    <h2>Congratulations 🎉</h2>
-    <p>You completed the system...</p>
-    <button onclick="sceneFinal()">But wait 👀</button>
-  `);
-}
-
-function sceneFinal(){
-  music.volume=0.5;
-  show(`
-    <h2>${girl}...</h2>
-    <p>I don’t want almost.</p>
-    <p>I want something real.</p>
-    <h3>Will you officially be my person?</h3>
-    <button onclick="yes()">YES 💖</button>
-    <button id="noBtn" onclick="no()">NO 😶</button>
-  `);
-}
-
-function no(){
-  alert("System error 😅 That answer feels illegal.");
-}
-
-function yes(){
-  music.volume=1;
-  show(`
-    <h1>OFFICIALLY US 💖</h1>
-    <p>${boy} & ${girl}</p>
-    <button onclick="certificate()">Download Certificate 📜</button>
-  `);
-  for(let i=0;i<100;i++){
-    let c=document.createElement("div");
-    c.className="confetti";
-    c.style.left=Math.random()*100+"%";
-    c.style.background="hsl("+Math.random()*360+",100%,75%)";
-    c.style.animationDuration=2+Math.random()*3+"s";
-    document.body.appendChild(c);
+  for(let i=1;i<=20;i++){
+    let img=document.createElement("img");
+    img.src=i+".jpg";
+    img.className="photo";
+    img.style.top=Math.random()*80+"%";
+    img.style.left=Math.random()*80+"%";
+    img.style.transform="rotate("+(Math.random()*40-20)+"deg)";
+    memory.appendChild(img);
   }
+
+  typeEnding();
 }
 
-function certificate(){
-  show(`
-    <h2>Official Couple Certificate 💖</h2>
-    <p>${boy} & ${girl}</p>
-    <p>Status: Intentional & Exclusive</p>
-    <p>Date: ${new Date().toLocaleDateString()}</p>
-  `);
+/* Sakura petals */
+setInterval(()=>{
+  let petal=document.createElement("div");
+  petal.className="petal";
+  petal.innerHTML="🌸";
+  petal.style.left=Math.random()*100+"vw";
+  petal.style.fontSize=(Math.random()*20+15)+"px";
+  document.body.appendChild(petal);
+  setTimeout(()=>petal.remove(),8000);
+},500);
+
+/* Anime ending typing */
+function typeEnding(){
+  const text="13/03/2025 → ∞  Our story has just begun... 💖  To Be Continued 🌸";
+  let i=0;
+  function typing(){
+    if(i<text.length){
+      document.getElementById("endingText").innerHTML+=text.charAt(i);
+      i++;
+      setTimeout(typing,50);
+    }
+  }
+  typing();
 }
 
-scene1();
 </script>
 
 </body>
