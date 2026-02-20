@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Story 💖</title>
+<title>Our Love Story 🌸</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -16,31 +16,23 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background: linear-gradient(135deg,#ffd6ec,#ffeaf6,#fff5fb);
-  background-size:300% 300%;
-  animation:bgFlow 10s ease infinite;
   overflow:hidden;
-}
-
-@keyframes bgFlow{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+  transition:1s;
 }
 
 .container{
   text-align:center;
   padding:30px;
   max-width:350px;
-  background:rgba(255,255,255,0.6);
+  background:rgba(255,255,255,0.7);
   backdrop-filter:blur(15px);
   border-radius:25px;
-  box-shadow:0 15px 40px rgba(255,105,180,0.3);
-  transition:0.5s;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+  transition:1s;
 }
 
 h1{
-  color:#ff4da6;
+  margin-bottom:20px;
 }
 
 .option{
@@ -50,7 +42,7 @@ h1{
   background:white;
   cursor:pointer;
   transition:0.3s;
-  box-shadow:0 5px 15px rgba(255,105,180,0.2);
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 .option:hover{
@@ -78,156 +70,6 @@ h1{
 .scrapbook{
   min-height:100vh;
   padding:50px 20px;
-  background: linear-gradient(135deg,#ffe6f2,#fff0f8);
   text-align:center;
-  animation:fadeIn 1.5s ease forwards;
-}
+  animation:fadeIn 1.5
 
-@keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
-}
-
-.photo{
-  width:230px;
-  margin:30px auto;
-  padding:10px;
-  background:white;
-  border-radius:15px;
-  box-shadow:0 15px 30px rgba(255,105,180,0.3);
-}
-
-.photo img{
-  width:100%;
-  border-radius:10px;
-  filter:grayscale(100%);
-}
-
-.quote{
-  font-style:italic;
-  margin-bottom:40px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-  margin-top:30px;
-}
-
-.grid img{
-  width:100%;
-  border-radius:12px;
-  box-shadow:0 10px 25px rgba(255,105,180,0.25);
-  filter:grayscale(100%);
-}
-
-.ending{
-  margin-top:60px;
-  font-size:18px;
-  color:#ff4da6;
-  font-weight:600;
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="container" id="app">
-  <h1>🌸 Tap the moment that started everything</h1>
-
-  <div class="option" onclick="checkDate(this,'12/03/2025')">12/03/2025</div>
-  <div class="option" onclick="checkDate(this,'13/03/2025')">13/03/2025</div>
-  <div class="option" onclick="checkDate(this,'14/03/2025')">14/03/2025</div>
-</div>
-
-<script>
-
-function checkDate(el,date){
-  if(date==="13/03/2025"){
-    el.classList.add("correct");
-    setTimeout(step2,800);
-  }else{
-    el.classList.add("shake");
-    setTimeout(()=>el.classList.remove("shake"),400);
-  }
-}
-
-function step2(){
-  document.getElementById("app").innerHTML=`
-    <h1>🌊 Which world stole our evenings?</h1>
-    <div class="option" onclick="checkAnime(this,'naruto')">Naruto</div>
-    <div class="option" onclick="checkAnime(this,'one piece')">One Piece</div>
-    <div class="option" onclick="checkAnime(this,'demon slayer')">Demon Slayer</div>
-  `;
-}
-
-function checkAnime(el,anime){
-  if(anime==="one piece"){
-    el.classList.add("correct");
-    setTimeout(step3,800);
-  }else{
-    el.classList.add("shake");
-    setTimeout(()=>el.classList.remove("shake"),400);
-  }
-}
-
-function step3(){
-  document.getElementById("app").innerHTML=`
-    <h1>🌃 Where did time stop for us?</h1>
-    <div class="option" onclick="checkPlace(this,'beach')">Beach</div>
-    <div class="option" onclick="checkPlace(this,'balcony')">Balcony</div>
-    <div class="option" onclick="checkPlace(this,'terrace')">Terrace</div>
-  `;
-}
-
-function checkPlace(el,place){
-  if(place==="terrace"){
-    el.classList.add("correct");
-    setTimeout(showScrapbook,800);
-  }else{
-    el.classList.add("shake");
-    setTimeout(()=>el.classList.remove("shake"),400);
-  }
-}
-
-function showScrapbook(){
-  document.body.style.overflow="auto";
-  document.body.innerHTML=`
-
-  <div class="scrapbook">
-
-    <div class="photo"><img src="1.jpg"></div>
-    <div class="quote">“You are my peaceful place.”</div>
-
-    <div class="photo"><img src="2.jpg"></div>
-    <div class="quote">“Loving you feels like home.”</div>
-
-    <div class="photo"><img src="3.jpg"></div>
-    <div class="quote">“In your arms, everything fades away.”</div>
-
-    <div class="photo"><img src="4.jpg"></div>
-    <div class="quote">“With you, silence is beautiful.”</div>
-
-    <div class="grid">
-      <img src="5.jpg">
-      <img src="6.jpg">
-      <img src="7.jpg">
-      <img src="8.jpg">
-      <img src="9.jpg">
-      <img src="10.jpg">
-    </div>
-
-    <div class="ending">
-      13/03/2025 — The day our story began 💖
-    </div>
-
-  </div>
-  `;
-}
-
-</script>
-
-</body>
-</html>
