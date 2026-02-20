@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Love Arc</title>
+<title>Our Story 💖</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -12,132 +12,121 @@
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:black;
-  color:white;
+  height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  height:100vh;
+  background: linear-gradient(135deg,#ffd6ec,#ffeaf6,#fff5fb);
+  background-size:300% 300%;
+  animation:bgFlow 10s ease infinite;
   overflow:hidden;
 }
 
-.screen{
+@keyframes bgFlow{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+.container{
   text-align:center;
-  padding:20px;
+  padding:30px;
+  max-width:350px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(15px);
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(255,105,180,0.3);
+  transition:0.5s;
 }
 
 h1{
   color:#ff4da6;
-  text-shadow:0 0 20px #ff4da6;
 }
 
-input{
+.option{
+  margin:12px 0;
   padding:12px;
-  width:220px;
   border-radius:20px;
-  border:none;
-  margin-top:10px;
+  background:white;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 5px 15px rgba(255,105,180,0.2);
 }
 
-button{
-  margin-top:15px;
-  padding:10px 25px;
-  border:none;
-  border-radius:20px;
-  background:#ff4da6;
-  color:white;
-  cursor:pointer;
+.option:hover{
+  transform:scale(1.05);
+}
+
+.correct{
+  background:#ffb6d9;
+}
+
+.shake{
+  animation:shake 0.4s;
+}
+
+@keyframes shake{
+  0%{transform:translateX(0);}
+  25%{transform:translateX(-5px);}
+  50%{transform:translateX(5px);}
+  75%{transform:translateX(-5px);}
+  100%{transform:translateX(0);}
 }
 
 /* Scrapbook */
 
 .scrapbook{
-  background:#f3f1ee;
   min-height:100vh;
-  padding:40px 20px;
-  color:black;
-  font-family:Georgia,serif;
+  padding:50px 20px;
+  background: linear-gradient(135deg,#ffe6f2,#fff0f8);
+  text-align:center;
   animation:fadeIn 1.5s ease forwards;
-  opacity:0;
 }
 
 @keyframes fadeIn{
+  from{opacity:0;}
   to{opacity:1;}
-}
-
-.block{
-  margin-bottom:60px;
-  text-align:center;
 }
 
 .photo{
   width:230px;
-  background:white;
+  margin:30px auto;
   padding:10px;
-  box-shadow:0 12px 25px rgba(0,0,0,0.2);
-  margin:0 auto 20px;
+  background:white;
+  border-radius:15px;
+  box-shadow:0 15px 30px rgba(255,105,180,0.3);
 }
 
 .photo img{
   width:100%;
+  border-radius:10px;
   filter:grayscale(100%);
 }
 
-.rotate-left{ transform:rotate(-4deg); }
-.rotate-right{ transform:rotate(4deg); }
-
-.note{
-  width:260px;
-  margin:0 auto;
-  background:white;
-  padding:20px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+.quote{
   font-style:italic;
+  margin-bottom:40px;
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:15px;
-  margin-top:40px;
+  margin-top:30px;
 }
 
 .grid img{
   width:100%;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(255,105,180,0.25);
   filter:grayscale(100%);
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
 }
 
 .ending{
-  text-align:center;
-  margin-top:80px;
-  font-size:20px;
-  font-weight:500;
-}
-
-/* Floating hearts */
-
-.hearts{
-  position:fixed;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  top:0;
-  left:0;
-  overflow:hidden;
-}
-
-.hearts span{
-  position:absolute;
-  font-size:20px;
-  color:black;
-  animation:rise 8s linear infinite;
-}
-
-@keyframes rise{
-  0%{bottom:-20px;opacity:0;}
-  30%{opacity:1;}
-  100%{bottom:100%;opacity:0;}
+  margin-top:60px;
+  font-size:18px;
+  color:#ff4da6;
+  font-weight:600;
 }
 
 </style>
@@ -145,95 +134,81 @@ button{
 
 <body>
 
-<div id="app" class="screen">
-  <h1>🔐 Unlock Our Love Arc</h1>
-  <p>When did we officially become us?</p>
-  <input id="q1" placeholder="13/03/2025">
-  <br>
-  <button onclick="check1()">Unlock</button>
+<div class="container" id="app">
+  <h1>🌸 Tap the moment that started everything</h1>
+
+  <div class="option" onclick="checkDate(this,'12/03/2025')">12/03/2025</div>
+  <div class="option" onclick="checkDate(this,'13/03/2025')">13/03/2025</div>
+  <div class="option" onclick="checkDate(this,'14/03/2025')">14/03/2025</div>
 </div>
 
 <script>
 
-function check1(){
-  const v=document.getElementById("q1").value;
-  if(v==="13/03/2025"){
-    showQuestion2();
+function checkDate(el,date){
+  if(date==="13/03/2025"){
+    el.classList.add("correct");
+    setTimeout(step2,800);
   }else{
-    alert("Think again 😉");
+    el.classList.add("shake");
+    setTimeout(()=>el.classList.remove("shake"),400);
   }
 }
 
-function showQuestion2(){
+function step2(){
   document.getElementById("app").innerHTML=`
-    <h1>Round 2</h1>
-    <p>Your favourite anime?</p>
-    <input id="q2" placeholder="one piece">
-    <br>
-    <button onclick="check2()">Next</button>
+    <h1>🌊 Which world stole our evenings?</h1>
+    <div class="option" onclick="checkAnime(this,'naruto')">Naruto</div>
+    <div class="option" onclick="checkAnime(this,'one piece')">One Piece</div>
+    <div class="option" onclick="checkAnime(this,'demon slayer')">Demon Slayer</div>
   `;
 }
 
-function check2(){
-  const v=document.getElementById("q2").value.toLowerCase();
-  if(v==="one piece"){
-    showQuestion3();
+function checkAnime(el,anime){
+  if(anime==="one piece"){
+    el.classList.add("correct");
+    setTimeout(step3,800);
   }else{
-    alert("Nope 😏");
+    el.classList.add("shake");
+    setTimeout(()=>el.classList.remove("shake"),400);
   }
 }
 
-function showQuestion3(){
+function step3(){
   document.getElementById("app").innerHTML=`
-    <h1>Final Round</h1>
-    <p>Where was our first kiss?</p>
-    <input id="q3" placeholder="terrace">
-    <br>
-    <button onclick="check3()">Unlock Memories</button>
+    <h1>🌃 Where did time stop for us?</h1>
+    <div class="option" onclick="checkPlace(this,'beach')">Beach</div>
+    <div class="option" onclick="checkPlace(this,'balcony')">Balcony</div>
+    <div class="option" onclick="checkPlace(this,'terrace')">Terrace</div>
   `;
 }
 
-function check3(){
-  const v=document.getElementById("q3").value.toLowerCase();
-  if(v==="terrace"){
-    showScrapbook();
+function checkPlace(el,place){
+  if(place==="terrace"){
+    el.classList.add("correct");
+    setTimeout(showScrapbook,800);
   }else{
-    alert("Try again 💖");
+    el.classList.add("shake");
+    setTimeout(()=>el.classList.remove("shake"),400);
   }
 }
 
 function showScrapbook(){
   document.body.style.overflow="auto";
-  document.body.style.display="block";
-
   document.body.innerHTML=`
-  <div class="hearts">
-    <span style="left:20%">♥</span>
-    <span style="left:60%">♥</span>
-    <span style="left:80%">♥</span>
-  </div>
 
   <div class="scrapbook">
 
-    <div class="block">
-      <div class="photo rotate-left"><img src="1.jpg"></div>
-      <div class="note">“You are my safe place in this chaotic world.”</div>
-    </div>
+    <div class="photo"><img src="1.jpg"></div>
+    <div class="quote">“You are my peaceful place.”</div>
 
-    <div class="block">
-      <div class="photo rotate-right"><img src="2.jpg"></div>
-      <div class="note">“Loving you feels like coming home.”</div>
-    </div>
+    <div class="photo"><img src="2.jpg"></div>
+    <div class="quote">“Loving you feels like home.”</div>
 
-    <div class="block">
-      <div class="photo rotate-right"><img src="3.jpg"></div>
-      <div class="note">“In your arms, I forget every fear.”</div>
-    </div>
+    <div class="photo"><img src="3.jpg"></div>
+    <div class="quote">“In your arms, everything fades away.”</div>
 
-    <div class="block">
-      <div class="photo rotate-left"><img src="4.jpg"></div>
-      <div class="note">“With you, even silence feels beautiful.”</div>
-    </div>
+    <div class="photo"><img src="4.jpg"></div>
+    <div class="quote">“With you, silence is beautiful.”</div>
 
     <div class="grid">
       <img src="5.jpg">
@@ -245,8 +220,7 @@ function showScrapbook(){
     </div>
 
     <div class="ending">
-      <p>13/03/2025 — The day “us” began.</p>
-      <p>And this is just the beginning of our forever.</p>
+      13/03/2025 — The day our story began 💖
     </div>
 
   </div>
