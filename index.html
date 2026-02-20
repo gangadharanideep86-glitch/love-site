@@ -2,21 +2,139 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deep ❤️ Swati</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body>
-
-<!-- Your website content here -->
+<body style="margin:0;font-family:Poppins,sans-serif;overflow:hidden;">
 
 <script>
 
-/* ===============================
-   PROPOSAL SECTION START
-================================ */
+/* =========================
+   STEP 1 – UNLOCK
+========================= */
 
-function proposalPage(){
+function showUnlock(){
+document.body.innerHTML = `
+<style>
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  background:linear-gradient(135deg,#ffe6f2,#ffb3d9);
+  text-align:center;
+}
+.card{
+  background:white;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 15px 35px rgba(255,105,180,0.3);
+}
+input{
+  padding:12px;
+  border-radius:20px;
+  border:1px solid #ccc;
+  margin-top:10px;
+  text-align:center;
+}
+button{
+  margin-top:15px;
+  padding:10px 25px;
+  border:none;
+  border-radius:20px;
+  background:#ff4da6;
+  color:white;
+  cursor:pointer;
+}
+</style>
+
+<div class="card">
+<h2>When did we become us? 💖</h2>
+<input id="dateInput" placeholder="13/03/2025">
+<br>
+<button onclick="checkDate()">Unlock</button>
+<p id="error" style="color:red;"></p>
+</div>
+`;
+}
+
+function checkDate(){
+let value = document.getElementById("dateInput").value.trim();
+if(value === "13/03/2025"){
+showScrapbook();
+}else{
+document.getElementById("error").innerText="Hmm... try again 💭";
+}
+}
+
+/* =========================
+   STEP 2 – SCRAPBOOK
+========================= */
+
+function showScrapbook(){
+document.body.style.overflow="auto";
+document.body.innerHTML = `
+<style>
+body{
+  background:linear-gradient(135deg,#fce4ec,#f8bbd0,#f3e5f5);
+  margin:0;
+  text-align:center;
+}
+.frame{
+  width:220px;
+  margin:25px auto;
+  padding:12px;
+  background:white;
+  border-radius:18px;
+  box-shadow:0 15px 35px rgba(255,105,180,0.25);
+}
+.frame img{
+  width:100%;
+  border-radius:12px;
+}
+.quote{
+  font-style:italic;
+  margin-bottom:30px;
+}
+button{
+  padding:12px 25px;
+  border:none;
+  border-radius:20px;
+  background:#ff4da6;
+  color:white;
+  cursor:pointer;
+}
+</style>
+
+<h2>Our Memories 💕</h2>
+
+<div class="frame"><img src="1.jpg"></div>
+<div class="quote">You are my peaceful place.</div>
+
+<div class="frame"><img src="2.jpg"></div>
+<div class="quote">Loving you feels like home.</div>
+
+<div class="frame"><img src="3.jpg"></div>
+<div class="frame"><img src="4.jpg"></div>
+<div class="frame"><img src="5.jpg"></div>
+<div class="frame"><img src="6.jpg"></div>
+<div class="frame"><img src="7.jpg"></div>
+<div class="frame"><img src="8.jpg"></div>
+<div class="frame"><img src="9.jpg"></div>
+<div class="frame"><img src="10.jpg"></div>
+
+<br><br>
+<button onclick="startProposal()">Continue 💍</button>
+`;
+}
+
+/* =========================
+   STEP 3 – PROPOSAL
+========================= */
+
+function startProposal(){
 
 document.body.innerHTML = `
 <style>
@@ -27,15 +145,40 @@ body{
   justify-content:center;
   align-items:center;
   background:radial-gradient(circle at top,#ffe6f2,#ffb3d9,#ff66b2);
-  font-family:'Poppins',sans-serif;
   overflow:hidden;
   text-align:center;
   color:white;
 }
-.container{z-index:2;}
+
+/* Sparkles */
+.star{
+  position:absolute;
+  width:4px;
+  height:4px;
+  background:white;
+  border-radius:50%;
+  animation:twinkle 3s infinite;
+}
+@keyframes twinkle{
+  0%{opacity:0}
+  50%{opacity:1}
+  100%{opacity:0}
+}
+
+/* Petals */
+.petal{
+  position:absolute;
+  font-size:20px;
+  animation:fall 6s linear infinite;
+}
+@keyframes fall{
+  from{transform:translateY(-10vh);}
+  to{transform:translateY(110vh);}
+}
+
 .yesBtn{
-  padding:25px 60px;
-  font-size:28px;
+  padding:20px 50px;
+  font-size:24px;
   background:#4CAF50;
   color:white;
   border:none;
@@ -53,28 +196,77 @@ body{
 }
 </style>
 
-<div class="container">
 <h1>Swati... Will You Marry Me? 💍</h1>
 <br>
-<button class="yesBtn" onclick="alert('She Said YES 💖')">YES 💖</button>
+<button class="yesBtn" id="yesBtn" onclick="finalYes()">YES 💖</button>
 <button class="noBtn" id="noBtn">No 😅</button>
-</div>
 `;
 
+spawnStars();
+spawnPetals();
 moveNoButton();
 }
 
-function moveNoButton(){
-  const noBtn=document.getElementById("noBtn");
-  noBtn.addEventListener("mouseover",()=>{
-    noBtn.style.top=Math.random()*80+"vh";
-    noBtn.style.left=Math.random()*80+"vw";
-  });
+/* Effects */
+
+function spawnStars(){
+for(let i=0;i<50;i++){
+let s=document.createElement("div");
+s.className="star";
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
+document.body.appendChild(s);
+}
 }
 
-/* ===============================
-   PROPOSAL SECTION END
-================================ */
+function spawnPetals(){
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="petal";
+p.innerHTML="🌹";
+p.style.left=Math.random()*100+"vw";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),6000);
+},600);
+}
+
+function moveNoButton(){
+let noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",()=>{
+noBtn.style.top=Math.random()*80+"vh";
+noBtn.style.left=Math.random()*80+"vw";
+});
+}
+
+/* FINAL CELEBRATION */
+
+function finalYes(){
+document.body.innerHTML=`
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:black;
+  color:white;
+  font-size:32px;
+  text-align:center;
+}
+</style>
+
+<div>
+She Said YES 💍💖 <br>
+Deep ❤️ Swati Forever
+</div>
+`;
+}
+
+/* AUTO START */
+window.onload = function(){
+showUnlock();
+}
 
 </script>
 
