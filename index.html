@@ -4,26 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deep ❤️ Swati</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
-<body style="margin:0;font-family:Poppins,sans-serif;overflow:hidden;">
+<body style="margin:0;font-family:Poppins,sans-serif;">
 
 <script>
 
-/* =========================
-   STEP 1 – UNLOCK
-========================= */
+/* ======================
+   STEP 1 – DATE UNLOCK
+====================== */
 
 function showUnlock(){
 document.body.innerHTML = `
 <style>
 body{
+  margin:0;
+  height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  height:100vh;
-  background:linear-gradient(135deg,#ffe6f2,#ffb3d9);
+  background:linear-gradient(135deg,#ffe6f2,#ffb3d9,#ff80bf);
   text-align:center;
 }
 .card{
@@ -52,7 +53,7 @@ button{
 
 <div class="card">
 <h2>When did we become us? 💖</h2>
-<input id="dateInput" placeholder="13/03/2025">
+<input id="dateInput" placeholder="DD/MM/YYYY">
 <br>
 <button onclick="checkDate()">Unlock</button>
 <p id="error" style="color:red;"></p>
@@ -63,24 +64,27 @@ button{
 function checkDate(){
 let value = document.getElementById("dateInput").value.trim();
 if(value === "13/03/2025"){
-showScrapbook();
+showGallery();
 }else{
-document.getElementById("error").innerText="Hmm... try again 💭";
+document.getElementById("error").innerText="That’s not our special day 💭";
 }
 }
 
-/* =========================
-   STEP 2 – SCRAPBOOK
-========================= */
+/* ======================
+   STEP 2 – PHOTO GALLERY
+====================== */
 
-function showScrapbook(){
+function showGallery(){
 document.body.style.overflow="auto";
 document.body.innerHTML = `
 <style>
 body{
-  background:linear-gradient(135deg,#fce4ec,#f8bbd0,#f3e5f5);
   margin:0;
+  background:linear-gradient(135deg,#fce4ec,#f8bbd0,#f3e5f5);
   text-align:center;
+}
+h2{
+  padding-top:30px;
 }
 .frame{
   width:220px;
@@ -96,15 +100,8 @@ body{
 }
 .quote{
   font-style:italic;
-  margin-bottom:30px;
-}
-button{
-  padding:12px 25px;
-  border:none;
-  border-radius:20px;
-  background:#ff4da6;
-  color:white;
-  cursor:pointer;
+  margin-bottom:25px;
+  color:#444;
 }
 </style>
 
@@ -126,140 +123,8 @@ button{
 <div class="frame"><img src="10.jpg"></div>
 
 <br><br>
-<button onclick="startProposal()">Continue 💍</button>
-`;
-}
-
-/* =========================
-   STEP 3 – PROPOSAL
-========================= */
-
-function startProposal(){
-
-document.body.innerHTML = `
-<style>
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:radial-gradient(circle at top,#ffe6f2,#ffb3d9,#ff66b2);
-  overflow:hidden;
-  text-align:center;
-  color:white;
-}
-
-/* Sparkles */
-.star{
-  position:absolute;
-  width:4px;
-  height:4px;
-  background:white;
-  border-radius:50%;
-  animation:twinkle 3s infinite;
-}
-@keyframes twinkle{
-  0%{opacity:0}
-  50%{opacity:1}
-  100%{opacity:0}
-}
-
-/* Petals */
-.petal{
-  position:absolute;
-  font-size:20px;
-  animation:fall 6s linear infinite;
-}
-@keyframes fall{
-  from{transform:translateY(-10vh);}
-  to{transform:translateY(110vh);}
-}
-
-.yesBtn{
-  padding:20px 50px;
-  font-size:24px;
-  background:#4CAF50;
-  color:white;
-  border:none;
-  border-radius:20px;
-  cursor:pointer;
-}
-.noBtn{
-  position:absolute;
-  padding:10px 20px;
-  background:#e53935;
-  color:white;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-}
-</style>
-
-<h1>Swati... Will You Marry Me? 💍</h1>
-<br>
-<button class="yesBtn" id="yesBtn" onclick="finalYes()">YES 💖</button>
-<button class="noBtn" id="noBtn">No 😅</button>
-`;
-
-spawnStars();
-spawnPetals();
-moveNoButton();
-}
-
-/* Effects */
-
-function spawnStars(){
-for(let i=0;i<50;i++){
-let s=document.createElement("div");
-s.className="star";
-s.style.left=Math.random()*100+"vw";
-s.style.top=Math.random()*100+"vh";
-document.body.appendChild(s);
-}
-}
-
-function spawnPetals(){
-setInterval(()=>{
-let p=document.createElement("div");
-p.className="petal";
-p.innerHTML="🌹";
-p.style.left=Math.random()*100+"vw";
-document.body.appendChild(p);
-setTimeout(()=>p.remove(),6000);
-},600);
-}
-
-function moveNoButton(){
-let noBtn=document.getElementById("noBtn");
-noBtn.addEventListener("mouseover",()=>{
-noBtn.style.top=Math.random()*80+"vh";
-noBtn.style.left=Math.random()*80+"vw";
-});
-}
-
-/* FINAL CELEBRATION */
-
-function finalYes(){
-document.body.innerHTML=`
-<style>
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:black;
-  color:white;
-  font-size:32px;
-  text-align:center;
-}
-</style>
-
-<div>
-She Said YES 💍💖 <br>
-Deep ❤️ Swati Forever
-</div>
+<h3 style="color:#e91e63;">13/03/2025 — Our Story Began 💖</h3>
+<br><br>
 `;
 }
 
