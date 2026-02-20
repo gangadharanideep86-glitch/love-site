@@ -1,8 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Deep ❤️ Swati</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Your website content here -->
+
+<script>
+
+/* ===============================
+   PROPOSAL SECTION START
+================================ */
+
 function proposalPage(){
 
 document.body.innerHTML = `
 <style>
-
 body{
   margin:0;
   height:100vh;
@@ -15,63 +32,7 @@ body{
   text-align:center;
   color:white;
 }
-
-/* Sparkle Stars */
-.star{
-  position:absolute;
-  width:4px;
-  height:4px;
-  background:white;
-  border-radius:50%;
-  animation:twinkle 3s infinite;
-}
-
-@keyframes twinkle{
-  0%{opacity:0}
-  50%{opacity:1}
-  100%{opacity:0}
-}
-
-/* Rose petals */
-.petal{
-  position:absolute;
-  font-size:20px;
-  animation:fall 6s linear infinite;
-}
-
-@keyframes fall{
-  from{transform:translateY(-10vh);}
-  to{transform:translateY(110vh);}
-}
-
-.container{
-  z-index:2;
-}
-
-.typing{
-  font-size:38px;
-  white-space:nowrap;
-  overflow:hidden;
-  border-right:3px solid white;
-  width:0;
-  animation:typing 3s steps(20,end) forwards;
-}
-
-@keyframes typing{
-  from{width:0}
-  to{width:100%}
-}
-
-.ring{
-  font-size:80px;
-  animation:pop 1.5s infinite alternate;
-}
-
-@keyframes pop{
-  from{transform:scale(1)}
-  to{transform:scale(1.15)}
-}
-
+.container{z-index:2;}
 .yesBtn{
   padding:25px 60px;
   font-size:28px;
@@ -80,73 +41,29 @@ body{
   border:none;
   border-radius:20px;
   cursor:pointer;
-  transition:0.3s;
 }
-
 .noBtn{
   position:absolute;
   padding:10px 20px;
-  font-size:14px;
   background:#e53935;
   color:white;
   border:none;
   border-radius:10px;
   cursor:pointer;
 }
-
 </style>
 
-<audio autoplay loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-</audio>
-
 <div class="container">
-
-<div class="ring">💍✨</div>
-
-<div class="typing">Swati... Will You Marry Me?</div>
-
-<br><br>
-
-<button class="yesBtn" id="yesBtn" onclick="finalCelebration()">YES 💖</button>
-
+<h1>Swati... Will You Marry Me? 💍</h1>
+<br>
+<button class="yesBtn" onclick="alert('She Said YES 💖')">YES 💖</button>
 <button class="noBtn" id="noBtn">No 😅</button>
-
 </div>
 `;
 
-spawnStars();
-spawnPetals();
 moveNoButton();
-growYesButton();
 }
 
-/* Sparkles */
-function spawnStars(){
-  for(let i=0;i<80;i++){
-    const s=document.createElement("div");
-    s.className="star";
-    s.style.left=Math.random()*100+"vw";
-    s.style.top=Math.random()*100+"vh";
-    s.style.animationDuration=(Math.random()*3+2)+"s";
-    document.body.appendChild(s);
-  }
-}
-
-/* Rose petals */
-function spawnPetals(){
-  setInterval(()=>{
-    const p=document.createElement("div");
-    p.className="petal";
-    p.innerHTML="🌹";
-    p.style.left=Math.random()*100+"vw";
-    p.style.animationDuration=(Math.random()*3+4)+"s";
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),6000);
-  },400);
-}
-
-/* NO button runs faster */
 function moveNoButton(){
   const noBtn=document.getElementById("noBtn");
   noBtn.addEventListener("mouseover",()=>{
@@ -155,133 +72,11 @@ function moveNoButton(){
   });
 }
 
-/* YES grows bigger */
-function growYesButton(){
-  const yesBtn=document.getElementById("yesBtn");
-  let size=28;
-  setInterval(()=>{
-    size+=2;
-    yesBtn.style.fontSize=size+"px";
-  },1500);
-}
+/* ===============================
+   PROPOSAL SECTION END
+================================ */
 
-/* FINAL CINEMATIC END */
-function finalCelebration(){
+</script>
 
-document.body.innerHTML=`
-<style>
-
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:black;
-  color:white;
-  font-family:'Poppins',sans-serif;
-  overflow:hidden;
-  text-align:center;
-}
-
-/* Glow text */
-.glow{
-  font-size:45px;
-  color:#ff4da6;
-  text-shadow:
-    0 0 10px #ff4da6,
-    0 0 20px #ff1493,
-    0 0 40px #ff85c1;
-  animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.08)}
-  100%{transform:scale(1)}
-}
-
-/* Fireworks */
-.firework{
-  position:absolute;
-  width:6px;
-  height:6px;
-  background:yellow;
-  border-radius:50%;
-  animation:explode 1.5s ease-out forwards;
-}
-
-@keyframes explode{
-  0%{transform:scale(0);opacity:1}
-  100%{transform:scale(12);opacity:0}
-}
-
-/* Confetti */
-.confetti{
-  position:absolute;
-  width:8px;
-  height:8px;
-  animation:fall 3s linear infinite;
-}
-
-@keyframes fall{
-  from{transform:translateY(-10vh);}
-  to{transform:translateY(110vh);}
-}
-
-/* Flash */
-.flash{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:white;
-  animation:flash 0.5s ease forwards;
-}
-
-@keyframes flash{
-  from{opacity:1}
-  to{opacity:0}
-}
-
-</style>
-
-<div class="flash"></div>
-
-<div>
-  <div class="glow">She Said YES 💍💖</div>
-  <p style="margin-top:15px;">Deep ❤️ Swati Forever</p>
-</div>
-`;
-
-launchFireworks();
-launchConfetti();
-}
-
-/* Fireworks loop */
-function launchFireworks(){
-  setInterval(()=>{
-    const fw=document.createElement("div");
-    fw.className="firework";
-    fw.style.left=Math.random()*100+"vw";
-    fw.style.top=Math.random()*80+"vh";
-    fw.style.background=
-      ["#ff4da6","#ffd700","#00e5ff","#ffffff","#ff1493"]
-      [Math.floor(Math.random()*5)];
-    document.body.appendChild(fw);
-    setTimeout(()=>fw.remove(),1500);
-  },300);
-}
-
-/* Confetti rain */
-function launchConfetti(){
-  setInterval(()=>{
-    const c=document.createElement("div");
-    c.className="confetti";
-    c.style.left=Math.random()*100+"vw";
-    c.style.background=
-      ["#ff4da6","#ffd700","#00e5ff","#ffffff"]
-      [Math.floor(Math.random()*4)];
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),3000);
-  },200);
-}
+</body>
+</html>
